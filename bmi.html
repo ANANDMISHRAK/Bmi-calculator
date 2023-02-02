@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bmi.css">
+</head>
+<body>
+   <!-- <div class="containter-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+    -->
+    <div class="bmi_div">
+        <h1>BMI Caliculator</h1>
+            <p>Height in CM: 
+                 <input type="text" id="height"><br><span id="height_error"></span>
+            </p>
+             <p>Weight in Kg: 
+                 <input type="text" id="weight"><br><span id="weight_error"></span> 
+             </p>
+
+            <button type="button" id="submitBtn">clculate</button>
+            
+            <p id="result"></p>
+       
+    </div>
+
+    <script>
+        
+        
+       
+        const submit = document.getElementById("submitBtn")
+          
+       
+
+        submit.addEventListener('click', ()=>{
+            const h= parseInt(document.getElementById("height").value);
+            const w = parseInt(document.getElementById("weight").value);
+            const result = document.getElementById("result");
+            let h_status= false;
+            let w_status= false;
+
+            if(h === "" || h<=0 || isNaN(h))
+            {
+               document.getElementById("height_error").innerHTML = 'Please Provide a valid Height'
+            }
+            else{
+                document.getElementById("height_error").innerHTML ='';
+                h_status= true;
+            }
+
+            if(w === "" || w<=0 ||isNaN(w))
+            {
+                document.getElementById("weight_error").innerHTML = 'Please Provide a valid Weight'
+            }
+            else{
+                document.getElementById("weight_error").innerHTML ='';
+                w_status= true;
+            }
+            if(w_status== true && h_status== true)
+            {
+            
+             const bmi= ((w / (h * h))*10000).toFixed(2);
+             if(bmi <18.6)
+             {
+                result.innerHTML = `Under Weight, BMI is ${bmi}`; 
+             }
+             else if(bmi>=18.6 && bmi <24.9)
+             {
+                result.innerHTML = `Normal, BMI is ${bmi}`; 
+             }
+             else
+             {
+                result.innerHTML = `Over Weight, BMI is ${bmi}`; 
+             }
+            }
+            else{
+                alert('The form has error');
+                result.innerHTML="";
+            }
+        });
+
+
+
+    </script>
+
+</body>
+</html>
